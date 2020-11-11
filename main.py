@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 
 from conexion import crear_usuario, iniciar_sesion
-from conexion import insertar_pelicula, get_peliculas, get_pelicula, actualizar_pelicula
+from conexion import insertar_pelicula, get_peliculas, get_pelicula
 
 app = Flask(__name__)
 
@@ -36,15 +36,6 @@ def peliculas(id=None):
         return jsonify(get_peliculas())
     elif request.method == "GET" and id is not None:
         return jsonify(get_pelicula(id))
-    elif request.method == "PATCH" and id is not None and request.is_json:
-        data = request.get_json()
-        columna = data['columna']
-        valor = data['valor']
-        print(data)
-        if actualizar_pelicula(id, columna, valor):
-            return jsonify({'code': "ok"})
-        else:
-            return jsonify({'code': "no"})
 
 @app.route("/api/v1/sesiones", methods=["POST"])
 def sesion():

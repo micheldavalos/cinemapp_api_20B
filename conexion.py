@@ -108,14 +108,5 @@ def get_pelicula(id):
         pelicula['compartido'] = row[9]
 
     return pelicula
-    
-def actualizar_pelicula(id, columna, valor):
-    update = "UPDATE pelicula SET {} = %s WHERE id = %s".format(columna)   
-    cursor.execute(update, (valor, id))
-    bd.commit()
-    if cursor.rowcount:  
-        return True
-    else:
-        return False
-    
+
  
